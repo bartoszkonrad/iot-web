@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>homecontrol login</title>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ha.css') }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='side-menu.css') }}"/>
+
+</head>
+<body>
+  <h1>{{ text }}</h1>
+
+  <div class="form">
+    <form action='login' method='POST'>
+     <input type='text' name='username' id='username' placeholder='username'></input>
+     <input type='password' name='passwd' id='passwd' placeholder='password'></input>
+     <!-- <label for="remember">
+            <input id="remember" name='remember' type="checkbox"> Remember me </input>
+          </label> -->
+          <input type='submit' name='submit'></input>
+        </form>
+
+      </div>
+
+      <script type="text/javascript" src="{{ url_for('static', filename='ui.js') }}"></script>
+
+    </body>
+    </html>

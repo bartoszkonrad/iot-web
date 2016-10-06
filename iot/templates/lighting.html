@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}
+  <title>hc - lighting</title>
+{% endblock %}
+
+{% block body %}
+            <div class="header">
+                <h1>lighting control</h1>
+            </div>
+
+            <div class="content">
+                <a href="http://rooms.lan/light?bdr=1">Turn ON bedroom</a>
+              </br>
+                <a href="http://rooms.lan/light?bdr=0">Turn OFF bedroom</a>
+              </br>
+                <a href="http://rooms.lan/light?bdr0=1">Turn ON bedroom0</a>
+              </br>
+                <a href="http://rooms.lan/light?bdr0=0">Turn OFF bedroom0</a>
+              </br>
+                <a href="http://rooms.lan/light?bdr1=1">Turn ON bedroom1</a>
+              </br>
+                <a href="http://rooms.lan/light?bdr1=0">Turn OFF bedroom1</a>
+              </br>
+                <a href="http://rooms.lan/light?lvr=1">Turn ON living room</a>
+              </br>
+                <a href="http://rooms.lan/light?lvr=0">Turn OFF living room</a>
+              </br>
+                <a href="http://rooms.lan/light?lvr0=1">Turn ON living room0</a>
+              </br>
+                <a href="http://rooms.lan/light?lvr0=0">Turn OFF living room0</a>
+              </br>
+                <a href="http://rooms.lan/light?lvr1=1">Turn ON living room1</a>
+              </br>
+                <a href="http://rooms.lan/light?lvr1=0">Turn OFF living room1</a>
+            </div>
+{% endblock %}

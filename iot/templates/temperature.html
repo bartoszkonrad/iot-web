@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}
+  <title>hc - temperature</title>
+{% endblock %}
+
+{% block body %}
+            <div class="header">
+                <h1>temperature sensor</h1>
+            </div>
+
+            <div class="content">
+                <h2 class="content-subhead">{{ text }}</h2>
+              </br>
+                <a href="http://rooms.lan/temp?temp=bdr">temp. bedroom</a>
+              </br>
+                <a href="http://rooms.lan/temp?temp=lvr">temp. living room</a>
+{% endblock %}
