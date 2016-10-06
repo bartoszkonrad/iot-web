@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <button type="button" id="push_data">Push</button>
+    </body>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script>
+        var ws = new WebSocket("ws://kolasz.xyz:10080");
+        ws.onmessage = function(evt) {
+            console.log(evt)
+        };
+        $('#push_data').click(function(){
+            console.log('sending data...');
+            ws.send('sample data');
+        });
+    </script>
+</html>
