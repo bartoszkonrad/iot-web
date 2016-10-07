@@ -9,9 +9,10 @@
             </div>
 
             <div class="content">
-                <h2 class="content-subhead">{{ text }}</h2>
+                <h3>rPi temperature: {{ rpitemp }}</h3>
               </br>
-                <a href="http://rooms.lan/temp?temp=bdr">temp. bedroom</a>
+                <h3>Bedroom temperature: {{ bdrtemp }}</h3>
               </br>
-                <a href="http://rooms.lan/temp?temp=lvr">temp. living room</a>
+                <h3>Living room temperature: {{ lvrtemp }}</h3>
+
 {% endblock %}

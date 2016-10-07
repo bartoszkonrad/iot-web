@@ -4,10 +4,12 @@
 
 import sys
 import datetime
+import requests
 # import logging
 from flask import Flask, request, redirect, url_for, abort, send_file, Response, render_template
 from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user
 from flask_mysqldb import MySQL
+
 
 # logger = logging.getLogger(__name__)
 # logger.setLevel(logging.INFO)
@@ -90,11 +92,17 @@ def lighting():
 @app.route('/temperature')
 @login_required
 def temperature():
-    sql = '''select * from sensors order by ts desc limit 1'''
     cur = mysql.connection.cursor()
+    sql = '''select value from sensors where location = "rpi" order by ts desc limit 1'''
     cur.execute(sql)
-    rv = cur.fetchall()
-    return render_template('temperature.html', text=str(rv))
+    rpitemp = cur.fetchone()[0]
+    sql = '''select value from sensors where location = "bdr" order by ts desc limit 1'''
+    cur.execute(sql)
+    bdrtemp = cur.fetchone()[0]
+    sql = '''select value from sensors where location = "lvr" order by ts desc limit 1'''
+    cur.execute(sql)
+    lvrtemp = cur.fetchone()[0]
+    return render_template('temperature.html', rpitemp=str(rpitemp), bdrtemp=str(bdrtemp), lvrtemp=str(lvrtemp))
     # return 'Temperature; Logged in as: ' + current_user.id
 
 
@@ -102,6 +110,12 @@ def temperature():
 @login_required
 def ws():
     return render_template('ws.html')
+
+@app.route('/colorpicker')
+@app.route('/colorpicker/<color>')
+@login_required
+def colorpicker(color=None):
+    return render_template('colorpicker.html', color=color)
 
 
 @app.route('/logout')
