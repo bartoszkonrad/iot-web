@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block title %}
+<title>hc - led strips</title>
+{% endblock %} {% block body %}
+<script type="text/javascript" src="{{ url_for('static', filename='colorpicker.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme.css') }}" />
+<div id="color-picker" class="cp-default"></div>
+<button type="button" id="offstrip">offstrip</button>
+<button type="button" id="poweron">poweron</button>
+<button type="button" id="poweroff">poweroff</button>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+    var ws = new WebSocket("ws://kolasz.xyz:10080");
+    ws.onmessage = function(evt) {
+        console.log(evt)
+    };
+    $('#offstrip').click(function() {
+        console.log('off...');
+        // ws.send('sample data');
+        if (document.getElementById('bdr').checked) {
+            var payload = '0;0;0;bdr';
+        } else if (document.getElementById('lvr').checked) {
+            var payload = '0;0;0;lvr';
+        }
+        console.log(payload);
+
+        ws.send(payload);
+    });
+    $('#poweron').click(function() {
+        console.log('poweron...');
+        ws.send('poweronstrip');
+    });
+    $('#poweroff').click(function() {
+        console.log('poweroff...');
+        ws.send('poweroffstrip');
+    });
+    ColorPicker(document.getElementById('color-picker'), function(hex, hsv, rgb) {
+        console.log(hsv.h.toFixed(2), hsv.s.toFixed(2), hsv.v.toFixed(2));
+        console.log(rgb.r, rgb.g, rgb.b); // [0-255], [0-255], [0-255]
+        document.body.style.backgroundColor = hex; // #HEX
+        if (document.getElementById('bdr').checked) {
+            var payload = hsv.h.toFixed(0) + ';' + hsv.s.toFixed(2) + ';' + hsv.v.toFixed(2) + ';bdr';
+        } else if (document.getElementById('lvr').checked) {
+            var payload = hsv.h.toFixed(0) + ';' + hsv.s.toFixed(2) + ';' + hsv.v.toFixed(2) + ';lvr';
+        }
+        // var payload = hsv.h.toFixed(0) + ';' + hsv.s.toFixed(2) + ';' + hsv.v.toFixed(2);
+        console.log(payload);
+
+        ws.send(payload);
+    });
+</script>
+<form action="">
+    <input type="radio" name="roompicker" id="lvr" value="lvr" checked="checked"> Salon<br>
+    <input type="radio" name="roompicker" id="bdr" value="bdr"> Sypialnia<br>
+</form>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+{% endblock %}
