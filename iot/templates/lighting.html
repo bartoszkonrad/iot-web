@@ -2,49 +2,60 @@
 {% block title %}
   <title>hc - lighting</title>
 {% endblock %}
-
 {% block body %}
             <div class="header">
-                <h1>lighting control</h1>
+                <h2>lighting control</h2>
             </div>
 
             <div class="content">
-              <p>
-              <a href="http://iot-atx.lan/leds?kitchen=0">kitchen off</a>
-            </br>
-            <a href="http://iot-atx.lan/leds?kitchen=500">kitchen 50%</a>
-          </br>
-          <a href="http://iot-atx.lan/leds?kitchen=1023">kitchen 100%</a>
-          </p>
-          <p>
-          <a href="http://iot-atx.lan/leds?bathroom=0">bathroom off</a>
-        </br>
-        <a href="http://iot-atx.lan/leds?bathroom=500">bathroom 50%</a>
-      </br>
-      <a href="http://iot-atx.lan/leds?bathroom=1023">bathroom 100%</a>
-      </p>
-                <a href="http://iot-rms.lan/light?bdr=1">Turn ON bedroom</a>
-              </br>
-                <a href="http://iot-rms.lan/light?bdr=0">Turn OFF bedroom</a>
-              </br>
-                <a href="http://iot-rms.lan/light?bdr0=1">Turn ON bedroom0</a>
-              </br>
-                <a href="http://iot-rms.lan/light?bdr0=0">Turn OFF bedroom0</a>
-              </br>
-                <a href="http://iot-rms.lan/light?bdr1=1">Turn ON bedroom1</a>
-              </br>
-                <a href="http://iot-rms.lan/light?bdr1=0">Turn OFF bedroom1</a>
-              </br>
-                <a href="http://iot-rms.lan/light?lvr=1">Turn ON living room</a>
-              </br>
-                <a href="http://iot-rms.lan/light?lvr=0">Turn OFF living room</a>
-              </br>
-                <a href="http://iot-rms.lan/light?lvr0=1">Turn ON living room0</a>
-              </br>
-                <a href="http://iot-rms.lan/light?lvr0=0">Turn OFF living room0</a>
-              </br>
-                <a href="http://iot-rms.lan/light?lvr1=1">Turn ON living room1</a>
-              </br>
-                <a href="http://iot-rms.lan/light?lvr1=0">Turn OFF living room1</a>
+              <h3>kitchen leds</h3>
+              <a class="pure-button" onclick="kitchenLeds(0)">off</a>
+              <a class="pure-button" onclick="kitchenLeds(300)">30%</a>
+              <a class="pure-button" onclick="kitchenLeds(700)">70%</a>
+              <a class="pure-button" onclick="kitchenLeds(1023)">100%</a>
+
+              <h3>bathroom leds</h3>
+              <a class="pure-button" onclick="bathroomLeds(0)">off</a>
+              <a class="pure-button" onclick="bathroomLeds(300)">30%</a>
+              <a class="pure-button" onclick="bathroomLeds(700)">70%</a>
+              <a class="pure-button" onclick="bathroomLeds(1023)">100%</a>
+
+              <div class="pure-g">
+                  <div class="pure-u-1-3">
+                    <h3>living room lamps</h3>
+                    <a class="pure-button" onclick="livingRoomLamps('lvr', 1)">on</a>
+                    <a class="pure-button" onclick="livingRoomLamps('lvr', 0)">off</a>
+                  </div>
+                  <div class="pure-u-1-3">
+                    <h3>lamp0</h3>
+                    <a class="pure-button" onclick="livingRoomLamps('lvr0', 1)">on</a>
+                    <a class="pure-button" onclick="livingRoomLamps('lvr0', 0)">off</a>
+                  </div>
+                  <div class="pure-u-1-3">
+                    <h3>lamp1</h3>
+                    <a class="pure-button" onclick="livingRoomLamps('lvr1', 1)">on</a>
+                    <a class="pure-button" onclick="livingRoomLamps('lvr1', 0)">off</a>
+                  </div>
+              </div>
+
+              <div class="pure-g">
+                  <div class="pure-u-1-3">
+                    <h3>bedroom lamps</h3>
+                    <a class="pure-button" onclick="bedRoomLamps('bdr', 1)">on</a>
+                    <a class="pure-button" onclick="bedRoomLamps('bdr', 0)">off</a>
+                  </div>
+                  <div class="pure-u-1-3">
+                    <h3>lamp0</h3>
+                    <a class="pure-button" onclick="bedRoomLamps('bdr0', 1)">on</a>
+                    <a class="pure-button" onclick="bedRoomLamps('bdr0', 0)">off</a>
+                  </div>
+                  <div class="pure-u-1-3">
+                    <h3>lamp1</h3>
+                    <a class="pure-button" onclick="bedRoomLamps('bdr1', 1)">on</a>
+                    <a class="pure-button" onclick="bedRoomLamps('bdr1', 0)">off</a>
+                  </div>
+              </div>
+
             </div>
+            <script type="text/javascript" src="{{ url_for('static', filename='lighting.js') }}"></script>
 {% endblock %}
