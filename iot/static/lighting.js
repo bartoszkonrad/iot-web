@@ -5,7 +5,14 @@ if ("WebSocket" in window) {
   ws = new WebSocket("ws://kolasz.xyz:10080");
 
   ws.onopen = function() {
-    //  ws.send("Message to send");
+    var msg = {
+      type: "msq",
+      val: "Connection from lighting",
+      date: Date.now()
+    };
+    if (ws) {
+      ws.send(JSON.stringify(msg));
+    }
     //  alert("Message is sent...");
     console.log('connected to ws server')
   };
