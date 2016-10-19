@@ -81,6 +81,7 @@ function offLedStrip() {
       loc: 'bdr',
       date: Date.now()
     };
+    rgbPower(0, 'bdrrgb')
   } else if (document.getElementById('lvr').checked) {
     var msg = {
       type: "rgbStrip",
@@ -90,17 +91,27 @@ function offLedStrip() {
       loc: 'lvr',
       date: Date.now()
     };
+    rgbPower(0, 'lvrrgb')
   }
   if (ws) {
     ws.send(JSON.stringify(msg));
   }
 }
 
-function rgbPower(val) {
+function onLedStrip() {
+  if (document.getElementById('bdr').checked) {
+    rgbPower(1, 'bdrrgb')
+  } else if (document.getElementById('lvr').checked) {
+    rgbPower(1, 'lvrrgb')
+  }
+}
+
+function rgbPower(val, loc) {
   console.log('off...');
   var msg = {
     type: "rgbPower",
     val: val,
+    loc: loc,
     date: Date.now()
   };
   if (ws) {
